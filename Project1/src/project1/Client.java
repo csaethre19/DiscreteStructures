@@ -14,7 +14,7 @@ public class Client {
 		int selection = 0;
 		System.out.println("Welcome to Programming Project 1. Please enter '1', '2', or '3' to select a problem.");
 		try {
-			selection = System.in.read() - 47;// read an integer from the console
+			selection = System.in.read() - 48;// read an integer from the console
 		} catch (IOException e) {
 			System.out.println("Invalid Input");
 		}
