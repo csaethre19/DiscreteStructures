@@ -65,6 +65,8 @@ public class Client {
 	 */
 	public static void Problem3() {
 		// TODO
+		FuzzySets sets = new FuzzySets();
+		sets.printResults();
 	}
 
 }
