@@ -1,7 +1,9 @@
+package project1;
+
 public class BooleanSets {
 
     public static Boolean[] Union(Boolean[] set1, Boolean[] set2){
-    // perform a union operation on set1 and 2 and return the output
+    // perform a union operation on Sset1 and 2 and return the output
     	Boolean[] union = new Boolean[set1.length];
     	
     	for (int i = 0; i < union.length; i++) {
