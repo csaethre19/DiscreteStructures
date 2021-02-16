@@ -10,7 +10,7 @@ import java.io.IOException;
 public class Client {
 
 	public static void main(String[] args) {
-
+		
 		int selection = 0;
 		System.out.println("Welcome to Programming Project 1. Please enter '1', '2', or '3' to select a problem.");
 		try {
@@ -37,7 +37,7 @@ public class Client {
 		default:
 			throw new IllegalStateException("Something Horrible has Happened");
 		}
-
+		
 	}
 
 	/**
@@ -64,7 +64,6 @@ public class Client {
 	 * 
 	 */
 	public static void Problem3() {
-		// TODO
 		FuzzySets sets = new FuzzySets();
 		sets.printResults();
 	}

@@ -18,10 +18,12 @@ public class FuzzySets {
 	 * representing key and degree of membership.
 	 */
 	public FuzzySets() {
+		setA = new HashMap<>();
 		setA.put("A", .60);
 		setA.put("B", .40);
 		setA.put("C", .45);
 		setA.put("D", .30);
+		setB = new HashMap<>();
 		setB.put("A", .70);
 		setB.put("B", .20);
 		setB.put("C", .50);
@@ -72,20 +74,33 @@ public class FuzzySets {
 	 * @param setA set to compute complement
 	 * @return complement of set
 	 */
-	public static HashMap<String, Double> Complement() {
-		// TODO
-		return null;
+	public static HashMap<String, Double> Complement(HashMap<String, Double> set) {
+		HashMap<String, Double> complement = new HashMap<>();
+		for (String key : set.keySet()) {
+			complement.put(key, 1 - set.get(key));
+		}
+		return complement;
 	}
 
 	/**
 	 * Computes the set operations on the fuzzy sets and displays the results.
 	 */
 	public void printResults() {
-		// TODO
+		System.out.println("SetA: " + convert(setA));
+		System.out.println("SetB: " + convert(setB));
+		
+		System.out.println("Union of SetA and SetB: " + convert(Union()));
+		System.out.println("Intersection of SetA and SetB: " + convert(Intersection()));
+		System.out.println("Complement of SetA: " + convert(Complement(setA)));
+		System.out.println("Complement of SetB: " + convert(Complement(setB)));
 	}
 	
 	private String convert(HashMap<String, Double> set) {
-		return null; // TODO
+		String result = "";
+		for (String key : set.keySet()) {
+			result += key + ": " + String.format("%.2f", set.get(key)) + " ";
+		}
+		
+		return result;
 	}
-
 }
