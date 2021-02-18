@@ -4,9 +4,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
+/**
+ * Creates multi sets <code>setA</code> and <code>setB</code> and performs set
+ * operations on them. Set Operations: Union, Intersection, Subtraction, &
+ * Addition.
+ * 
+ * @author Jeremiah Smith & William Norton
+ *
+ */
 public class Multisets {
 
-	int[] universalSet = {1,2,2,3,3,3,4,4,4,4,5,5,5,5,5};
+	private int[] universalSet = { 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5 };
 
 	int[] setA = {1, 2, 3, 3, 5, 5, 5,7};
 	int[] setB = {2, 3, 4, 4, 4, 4, 5, 5,};
@@ -63,17 +71,18 @@ public class Multisets {
 		return result;
 	}
 
-
-	//A-B FINISHED
+	// A-B FINISHED
 	public ArrayList<Integer> subtraction() {
 		ArrayList<Integer> result = new ArrayList<Integer>();
 		boolean truthValue;
 		for (int i = 0; i < setA.length; i++) {
 			truthValue = false;
 			for (int j = 0; j < setB.length; j++) {
-				if(setA[i] == setB[j]) truthValue = true;
+				if (setA[i] == setB[j])
+					truthValue = true;
 			}
-			if(!truthValue) result.add(setA[i]);
+			if (!truthValue)
+				result.add(setA[i]);
 		}
 		return result;
 	}
@@ -92,5 +101,11 @@ public class Multisets {
 
 		Collections.sort(addition);
 		return addition;
+	}
+
+	public void printSets() {
+		System.out.println("Universal Set: " + Arrays.toString(universalSet));
+		System.out.println("Set A: " + Arrays.toString(setA));
+		System.out.println("Set B: " + Arrays.toString(setB));
 	}
 }
