@@ -19,13 +19,13 @@ public class Multisets {
 		System.out.println(ms.union());
 
 		System.out.println("Intersect: ");
-
+		System.out.println(ms.intersect());
+		
 		System.out.println("subtraction: ");
 		System.out.println(ms.subtraction());
 
 		System.out.println("addition: ");
-
-
+		System.out.println(ms.addition());
 	}
 
 	// AUB FINISHED
@@ -44,16 +44,21 @@ public class Multisets {
 		return union;
 	}
 
-	//AnB
+	//AnB ISSUE Nmbers are getting comapred twice and then duplicated 
 	public ArrayList<Integer> intersect() {
+		
 		ArrayList<Integer> result = new ArrayList<Integer>();
-		boolean truthValue;
+
 		for (int i = 0; i < setA.length; i++) {
-			truthValue = false;
+
 			for (int j = 0; j < setB.length; j++) {
-				if(setA[i] == setB[j]) truthValue = true;
+				if(setA[i] == setB[j]) {
+					result.add(setA[i]); //maybe after set value to bad value
+					setA[i] = 0;
+					setB[j] = 0;
+					break;
+				}
 			}
-			if(!truthValue) result.add(setA[i]);
 		}
 		return result;
 	}
@@ -73,6 +78,7 @@ public class Multisets {
 		return result;
 	}
 
+	// Finished?
 	public ArrayList<Integer> addition() {
 		ArrayList<Integer> addition = new ArrayList<Integer>();
 
