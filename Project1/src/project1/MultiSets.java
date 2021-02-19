@@ -1,9 +1,17 @@
 package project1;
 
+/**
+ * Creates multi sets <code>setA</code> and <code>setB</code> and performs set
+ * operations on them. Set Operations: Union, Intersection, Subtraction, &
+ * Addition.
+ * 
+ * @author Jeremiah Smith & William Norton
+ *
+ */
 public class MultiSets {
 	/**
 	 * Performs union operation on <code>setA</code> and <code>setB</code> and
-	 * returns the result as a boolean array.
+	 * returns the result as a Multiset.
 	 * 
 	 * @param setA first set of union
 	 * @param setB second set of union
@@ -19,7 +27,7 @@ public class MultiSets {
 
 	/**
 	 * Performs intersection operation on <code>setA</code> and <code>setB</code>
-	 * and returns the result as a boolean array.
+	 * and returns the result as a Multiset.
 	 * 
 	 * @param setA first set of intersection
 	 * @param setB second set of intersection
@@ -36,7 +44,7 @@ public class MultiSets {
 
 	/**
 	 * Performs addition operation on <code>setA</code> and <code>setB</code> and
-	 * returns the result as a boolean array.
+	 * returns the result as a Multiset.
 	 * 
 	 * @param setA first set of addition
 	 * @param setB second set of addition
@@ -52,7 +60,7 @@ public class MultiSets {
 
 	/**
 	 * Performs subtraction operation on <code>setA</code> and <code>setB</code> and
-	 * returns the result as a boolean array.
+	 * returns the result as a Multiset.
 	 * 
 	 * @param setA first set of subtraction
 	 * @param setB second set of subtraction

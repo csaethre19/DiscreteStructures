@@ -56,15 +56,6 @@ public class Client {
 	 * 
 	 */
 	public static void Problem2() {
-		// TODO
-	}
-
-	/**
-	 * Performs set operations on fuzzy sets A and B.
-	 * Set Operations: Complement, Union, and Intersection.
-	 * 
-	 */
-	public static void Problem3() {
 		int[] universalSet = new int[] {1,2,3,4,5,6,7,8,9,10};
 		int[] setA = new int[] {10,4,6,4,5,0,1,2,3,4};
 		int[] setB = new int[] {1,2,3,4,5,6,7,8,9,10};
@@ -75,24 +66,46 @@ public class Client {
 			System.out.print(","+universalSet[i]);
 		}
 		System.out.println("}");
+		System.out.println("Set A Multiplicities of Universal Set");
+		System.out.print("{" + setA[0]);
+		for(int i = 1; i < setA.length; i++) {
+			System.out.print(","+setA[i]);
+		}
+		System.out.println("}");
+		
+		System.out.println("Set B Multiplicities of Universal Set");
+		System.out.print("{" + setB[0]);
+		for(int i = 1; i < setB.length; i++) {
+			System.out.print(","+setB[i]);
+		}
+		System.out.println("}");
 		
 		Multiset unionSet = MultiSets.Union(universalSet, setA, setB);
 		
-		System.out.println("Union Multi Set");
+		System.out.println("Union Multiset");
 		System.out.println(unionSet);
 		
 		Multiset intersectionSet = MultiSets.Intersection(universalSet, setA, setB);
-		System.out.println("Intersection Multi Set");
+		System.out.println("Intersection Multiset");
 		System.out.println(intersectionSet);
 		
 		Multiset sumSet = MultiSets.Add(universalSet, setA, setB);
-		System.out.println("Sum Multi Set");
+		System.out.println("Sum Multiset");
 		System.out.println(sumSet);
 		
 		
 		Multiset differenceSet = MultiSets.Subtract(universalSet, setA, setB);
-		System.out.println("Difference Multi Set");
+		System.out.println("Difference Multiset");
 		System.out.println(differenceSet);
+	}
+
+	/**
+	 * Performs set operations on fuzzy sets A and B.
+	 * Set Operations: Complement, Union, and Intersection.
+	 * 
+	 */
+	public static void Problem3() {
+	
 		
 		
 		
