@@ -1,87 +1,79 @@
 package project1;
 
 /**
+ * Performs set operations on plain sets represented by boolean arrays. Set
+ * operations: Union, Intersection, Complement, Subtract, and Xor.
  * 
- * @author William Norton, Marshall Ringwood, Charlotte Saethre, 
- * Cody Salmond, Jeremiah Smith, & Alvaro Zarate
+ * @author Cody Salmond
  *
  */
 public class BooleanSets {
 
-	/**
-	 * Performs union operation on <code>setA</code> and <code>setB</code> and
-	 * returns the result as a boolean array.
-	 * 
-	 * @param setA first set of union
-	 * @param setB second set of union
-	 * @return union of the two sets
-	 */
-	public static boolean[] Union(boolean[] setA, boolean[] setB) {
-		// TODO
-		return null;
+	public static Boolean[] Union(Boolean[] set1, Boolean[] set2) {
+		// perform a union operation on Sset1 and 2 and return the output
+		Boolean[] union = new Boolean[set1.length];
+
+		for (int i = 0; i < union.length; i++) {
+			if (set1[i] == true || set2[i] == true) {
+				union[i] = true;
+			} else {
+				union[i] = false;
+			}
+		}
+		return union;
 	}
 
-	/**
-	 * Performs intersection operation on <code>setA</code> and <code>setB</code>
-	 * and returns the result as a boolean array.
-	 * 
-	 * @param setA first set of intersection
-	 * @param setB second set of intersection
-	 * @return intersection of the two sets
-	 */
-	public static boolean[] Intersection(boolean[] setA, boolean[] setB) {
-		// TODO
-		return null;
+	public static Boolean[] Intersection(Boolean[] set1, Boolean[] set2) {
+		// perform a Intersection operation on set1 and 2 and return the output
+		Boolean[] intersection = new Boolean[set1.length];
+
+		for (int i = 0; i < intersection.length; i++) {
+			if (set1[i] == true && set2[i] == true) {
+				intersection[i] = true;
+			} else {
+				intersection[i] = false;
+			}
+		}
+		return intersection;
 	}
 
-	/**
-	 * Computes complement of a <code>setA</code> and returns a the result as a
-	 * boolean array.
-	 * 
-	 * @param setA set to compute complement
-	 * @return complement of set
-	 */
-	public static boolean[] Complement(boolean[] setA) {
-		// TODO
-		return null;
+	public static Boolean[] Complement(Boolean[] set) {
+		// return the complement of the input set
+		Boolean[] complement = new Boolean[set.length];
+
+		for (int i = 0; i < set.length; i++) {
+			complement[i] = !set[i];
+		}
+		return complement;
 	}
 
-	/**
-	 * Performs addition operation on <code>setA</code> and <code>setB</code> and
-	 * returns the result as a boolean array.
-	 * 
-	 * @param setA first set of addition
-	 * @param setB second set of addition
-	 * @return the sum of the sets
-	 */
-	public static boolean[] Add(boolean[] setA, boolean[] setB) {
-		// TODO
-		return null;
+	public static Boolean[] Subtract(Boolean[] set1, Boolean[] set2) {
+		// perform a subtraction operation on set1 and 2 and return the output
+		Boolean[] subtract = new Boolean[set1.length];
+
+		for (int i = 0; i < subtract.length; i++) {
+			if (set1[i] == true && set2[i] == true) {
+				subtract[i] = false;
+			} else {
+				subtract[i] = set1[i];
+			}
+
+		}
+		return subtract;
 	}
 
-	/**
-	 * Performs subtraction operation on <code>setA</code> and <code>setB</code> and
-	 * returns the result as a boolean array.
-	 * 
-	 * @param setA first set of subtraction
-	 * @param setB second set of subtraction
-	 * @return the difference of the sets
-	 */
-	public static boolean[] Subtract(boolean[] setA, boolean[] setB) {
-		// TODO
-		return null;
-	}
+	public static Boolean[] Xor(Boolean[] set1, Boolean[] set2) {
+		// perform a Xor operation on set1 and 2 and return the output
+		Boolean[] Xor = new Boolean[set1.length];
 
-	/**
-	 * Performs Xor operation on <code>setA</code> and <code>setB</code> and returns
-	 * the result as a boolean array.
-	 * 
-	 * @param setA first set of Xor operation
-	 * @param setB second set of Xor operation
-	 * @return result of Xor operation on both sets
-	 */
-	public static boolean[] Xor(boolean[] setA, boolean[] setB) {
-		return null;
+		for (int i = 0; i < Xor.length; i++) {
+			if (set1[i] == !set2[i]) {
+				Xor[i] = true;
+			} else {
+				Xor[i] = false;
+			}
+		}
+		return Xor;
 	}
 
 }
