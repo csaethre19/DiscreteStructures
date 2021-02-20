@@ -17,16 +17,7 @@ public class Client {
 
 	public static void main(String[] args) {
 
-		int selection = 0;
-		System.out.println("Welcome to Programming Project 1. Please enter '1', '2', or '3' to select a problem.");
-		try {
-			selection = System.in.read() - 48;// read an integer from the console
-		} catch (IOException e) {
-			System.out.println("Invalid Input");
-		}
-		switch (selection) {// switch on console input
-		case 1: {
-			Problem1();// run problem number 1
+		
 		Scanner input = new Scanner(System.in);
 		String selection = "";
 		System.out.println("Welcome to Programming Project 1.\n");
@@ -46,24 +37,6 @@ public class Client {
 			System.out.println();
 		} while (!selection.equals("q"));
 		input.close();
-
-			break;
-		}
-		case 2: {
-			Problem2();// run problem number 2
-			break;
-		}
-		case 3: {
-			Problem3();// run problem number 3
-			
-			break;
-		}
-
-		default:{
-			throw new IllegalStateException("Something Horrible has Happened");
-		}
-		}
-
 	}
 
 	/**
@@ -120,6 +93,8 @@ public class Client {
 
 		System.out.println("addition:");
 		System.out.println(ms.addition());
+		
+		System.out.println("Other solution to problem 2");
 		
 		int[] universalSet = new int[] {1,2,3,4,5,6,7,8,9,10};
 		int[] setA = new int[] {10,4,6,4,5,0,1,2,3,4};
