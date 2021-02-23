@@ -80,21 +80,6 @@ public class Client {
 	 */
 	public static void Problem2() {
 		System.out.println("Problem 2:");
-		Multisets ms = new Multisets();
-		ms.printSets();
-		System.out.println("Union: ");
-		System.out.println(ms.union());
-
-		System.out.println("Intersect: ");
-		System.out.println(ms.intersect());
-
-		System.out.println("subtraction: ");
-		System.out.println(ms.subtraction());
-
-		System.out.println("addition:");
-		System.out.println(ms.addition());
-		
-		System.out.println("Other solution to problem 2");
 		
 		int[] universalSet = new int[] {1,2,3,4,5,6,7,8,9,10};
 		int[] setA = new int[] {10,4,6,4,5,0,1,2,3,4};
