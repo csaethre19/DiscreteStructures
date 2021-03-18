@@ -1,6 +1,7 @@
 package project2;
 
 public class Heap {
+	public static int count;
 
 	/**
 	 * Rearranges the array in ascending order, using the natural order.
@@ -22,6 +23,13 @@ public class Heap {
 		}
 	}
 
+	/**
+	 * Resets the count.
+	 */
+	public static void clearCount() {
+		count = 0;
+	}
+
 	/***************************************************************************
 	 * Helper functions to restore the heap invariant.
 	 ***************************************************************************/
@@ -29,6 +37,7 @@ public class Heap {
 	private static void sink(Comparable[] pq, int k, int n) {
 		while (2 * k <= n) {
 			int j = 2 * k;
+			count++;
 			if (j < n && less(pq, j, j + 1))
 				j++;
 			if (!less(pq, k, j))
@@ -43,6 +52,7 @@ public class Heap {
 	 * support 1-based indexing.
 	 ***************************************************************************/
 	private static boolean less(Comparable[] pq, int i, int j) {
+		count++;
 		return pq[i - 1].compareTo(pq[j - 1]) < 0;
 	}
 

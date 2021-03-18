@@ -1,8 +1,12 @@
 package project2;
 
+import java.util.Random;
+
 import edu.princeton.cs.algs4.StdRandom;
 
 public class Quick {
+
+	static int comps = 0;
 
 	/**
 	 * Rearranges the array in ascending order, using the natural order.
@@ -14,9 +18,14 @@ public class Quick {
 		sort(a, 0, a.length - 1);
 		assert isSorted(a);
 	}
+	
+	public static void clearCount() {
+		comps = 0;
+	}
 
 	// quicksort the subarray from a[lo] to a[hi]
 	private static void sort(Comparable[] a, int lo, int hi) {
+		comps++;
 		if (hi <= lo)
 			return;
 		int j = partition(a, lo, hi);
@@ -35,17 +44,20 @@ public class Quick {
 
 			// find item on lo to swap
 			while (less(a[++i], v)) {
+				comps++;
 				if (i == hi)
 					break;
 			}
 
 			// find item on hi to swap
 			while (less(v, a[--j])) {
+				comps++;
 				if (j == lo)
 					break; // redundant since a[lo] acts as sentinel
 			}
 
 			// check if pointers cross
+			comps++;
 			if (i >= j)
 				break;
 
@@ -72,14 +84,20 @@ public class Quick {
 	 */
 	public static Comparable select(Comparable[] a, int k) {
 		if (k < 0 || k >= a.length) {
+			comps +=2;
 			throw new IllegalArgumentException("index is not between 0 and " + a.length + ": " + k);
 		}
 		StdRandom.shuffle(a);
 		int lo = 0, hi = a.length - 1;
+
+		comps++;
 		while (hi > lo) {
+			comps++;
 			int i = partition(a, lo, hi);
-			if (i > k)
+			comps++;
+			if (i > k) {
 				hi = i - 1;
+			}
 			else if (i < k)
 				lo = i + 1;
 			else
@@ -94,8 +112,10 @@ public class Quick {
 
 	// is v < w ?
 	private static boolean less(Comparable v, Comparable w) {
+		comps++;
 		if (v == w)
 			return false; // optimization when reference equals
+		comps++;
 		return v.compareTo(w) < 0;
 	}
 
@@ -114,9 +134,32 @@ public class Quick {
 	}
 
 	private static boolean isSorted(Comparable[] a, int lo, int hi) {
-		for (int i = lo + 1; i <= hi; i++)
+		for (int i = lo + 1; i <= hi; i++) {
+			comps++;
 			if (less(a[i], a[i - 1]))
 				return false;
+		}
 		return true;
+	}
+
+	public static void main(String[] args) {
+		Random rdm = new Random();
+		int size = 40;
+		Comparable<Integer>[] test = new Comparable[size];
+
+		for (int i = 0; i < test.length; i++) {
+			test[i] = rdm.nextInt(200);
+			System.out.print(test[i] + " ");
+		}
+
+		System.out.println();
+
+		Quick.sort(test);
+
+		for (int i = 0; i < test.length; i++) {
+			System.out.print(test[i] + " ");
+		}
+
+		System.out.println("\n" +comps);
 	}
 }
