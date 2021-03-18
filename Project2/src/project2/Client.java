@@ -24,12 +24,13 @@ public class Client {
 	}
 
 	private static void computeSortComparisons(int n) {
-		Permutations p = generatePermutations(n);
-		
+		Permutations p = new Permutations(n);
+
 		// Loop through all arrays, call each sort method on them, and save the
 		// comparison counts into array
-		// Determine best 10 cases, worst 10 cases, and average compares and display information
-		
+		// Determine best 10 cases, worst 10 cases, and average compares and display
+		// information
+
 		// HEAP
 		List<Integer> heapComparisons = collectHeapComparisons(p);
 		Queue<Integer> best10 = deteremineBest10(heapComparisons);
@@ -42,7 +43,7 @@ public class Client {
 		System.out.println();
 		System.out.println("Average comparisons for HeapSort: " + computeAverage(heapComparisons));
 		System.out.println();
-		
+
 		// QUICK
 		List<Integer> quickComparisons = collectQuickComparisons(p);
 		best10 = deteremineBest10(quickComparisons);
@@ -55,9 +56,9 @@ public class Client {
 		System.out.println();
 		System.out.println("Average comparisons for QuickSort: " + computeAverage(quickComparisons));
 		System.out.println();
-		
+
 		// MERGE
-		
+
 		// SHAKER
 	}
 
@@ -76,7 +77,7 @@ public class Client {
 		}
 		return comparisons;
 	}
-	
+
 	private static List<Integer> collectQuickComparisons(Permutations p) {
 		List<Integer> comparisons = new ArrayList<>();
 		for (int i = 0; i < p.getPermutations().length; i++) {
@@ -87,7 +88,7 @@ public class Client {
 		return comparisons;
 	}
 
-	private static Queue<Integer>  determineWorst10(List<Integer> comparisons) {
+	private static Queue<Integer> determineWorst10(List<Integer> comparisons) {
 		MaxPQ<Integer> maxPq = new MaxPQ<Integer>();
 		for (Integer i : comparisons) {
 			maxPq.insert(i);
@@ -109,18 +110,6 @@ public class Client {
 			best10.enqueue(minPq.delMin());
 		}
 		return best10;
-	}
-
-	private static Permutations generatePermutations(int n) {
-		// Generate permutations based on n
-		Integer[] perms = new Integer[n];
-
-		for (int i = 0; i < n; i++) {
-			perms[i] = i;
-		}
-		Permutations p = new Permutations(n);
-		p.permutations(perms, perms.length, perms.length);
-		return p;
 	}
 
 	private static int computeAverage(List<Integer> comparisons) {
