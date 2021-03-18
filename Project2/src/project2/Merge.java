@@ -1,6 +1,8 @@
 package project2;
 
 public class Merge {
+	
+	private static int count = 0;
 
 	// stably merge a[lo .. mid] with a[mid+1 ..hi] using aux[lo .. hi]
 	private static void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi) {
@@ -10,12 +12,14 @@ public class Merge {
 
 		// copy to aux[]
 		for (int k = lo; k <= hi; k++) {
+			count++;
 			aux[k] = a[k];
 		}
 
 		// merge back to a[]
 		int i = lo, j = mid + 1;
 		for (int k = lo; k <= hi; k++) {
+			count++;
 			if (i > mid)
 				a[k] = aux[j++];
 			else if (j > hi)
@@ -24,6 +28,7 @@ public class Merge {
 				a[k] = aux[j++];
 			else
 				a[k] = aux[i++];
+			count++;
 		}
 
 		// postcondition: a[lo .. hi] is sorted
@@ -32,6 +37,7 @@ public class Merge {
 
 	// mergesort a[lo..hi] using auxiliary array aux[lo..hi]
 	private static void sort(Comparable[] a, Comparable[] aux, int lo, int hi) {
+		count++;
 		if (hi <= lo)
 			return;
 		int mid = lo + (hi - lo) / 2;
@@ -57,6 +63,7 @@ public class Merge {
 
 	// is v < w ?
 	private static boolean less(Comparable v, Comparable w) {
+		count++;
 		return v.compareTo(w) < 0;
 	}
 
@@ -68,9 +75,11 @@ public class Merge {
 	}
 
 	private static boolean isSorted(Comparable[] a, int lo, int hi) {
-		for (int i = lo + 1; i <= hi; i++)
+		for (int i = lo + 1; i <= hi; i++) {
+			count += 2;
 			if (less(a[i], a[i - 1]))
 				return false;
+		}
 		return true;
 	}
 
@@ -82,12 +91,14 @@ public class Merge {
 
 		// copy to aux[]
 		for (int k = lo; k <= hi; k++) {
+			count++;
 			aux[k] = index[k];
 		}
 
 		// merge back to a[]
 		int i = lo, j = mid + 1;
 		for (int k = lo; k <= hi; k++) {
+			count++;
 			if (i > mid)
 				index[k] = aux[j++];
 			else if (j > hi)
@@ -96,6 +107,7 @@ public class Merge {
 				index[k] = aux[j++];
 			else
 				index[k] = aux[i++];
+			count++;
 		}
 	}
 
@@ -110,8 +122,10 @@ public class Merge {
 	public static int[] indexSort(Comparable[] a) {
 		int n = a.length;
 		int[] index = new int[n];
-		for (int i = 0; i < n; i++)
+		for (int i = 0; i < n; i++) {
+			count++;
 			index[i] = i;
+		}
 
 		int[] aux = new int[n];
 		sort(a, index, aux, 0, n - 1);
@@ -120,6 +134,7 @@ public class Merge {
 
 	// mergesort a[lo..hi] using auxiliary array aux[lo..hi]
 	private static void sort(Comparable[] a, int[] index, int[] aux, int lo, int hi) {
+		count++;
 		if (hi <= lo)
 			return;
 		int mid = lo + (hi - lo) / 2;

@@ -7,5 +7,7 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/Users/charl/Desktop/programming/DiscreteStructures/Project2/lib/algs4.jar"/>
+	<classpathentry kind="lib" path="/Users/marshallringwood/Documents/GitHub/DiscreteStructures/Project2/lib/algs4.jar"/>
+	<classpathentry kind="lib" path="/Users/marshallringwood/Documents/GitHub/DiscreteStructures/Project2/lib/stdlib.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
