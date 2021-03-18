@@ -24,15 +24,16 @@ public class Client {
 	}
 
 	private static void computeSortComparisons(int n) {
-		Permutations p = new Permutations(n);
-
+		Permutations p1 = new Permutations(n);
+		Permutations p2 = new Permutations(n);
+		Permutations p3 = new Permutations(n);
 		// Loop through all arrays, call each sort method on them, and save the
 		// comparison counts into array
 		// Determine best 10 cases, worst 10 cases, and average compares and display
 		// information
 
 		// HEAP
-		List<Integer> heapComparisons = collectHeapComparisons(p);
+		List<Integer> heapComparisons = collectHeapComparisons(p1);
 		Queue<Integer> best10 = deteremineBest10(heapComparisons);
 		Queue<Integer> worst10 = determineWorst10(heapComparisons);
 		System.out.println("Best 10 comparisons for HeapSort for n = " + n + ":");
@@ -45,7 +46,7 @@ public class Client {
 		System.out.println();
 
 		// QUICK
-		List<Integer> quickComparisons = collectQuickComparisons(p);
+		List<Integer> quickComparisons = collectQuickComparisons(p2);
 		best10 = deteremineBest10(quickComparisons);
 		worst10 = determineWorst10(quickComparisons);
 		System.out.println("Best 10 comparisons for QuickSort for n = " + n + ":");
@@ -60,7 +61,7 @@ public class Client {
 		// MERGE
 
 		// SHAKER
-		List<Integer> shakerComparisons = collectShakerComparisons(p);//sort for each of our permutations and get a list of the total number of compares from each time we ran the sort
+		List<Integer> shakerComparisons = collectShakerComparisons(p3);//sort for each of our permutations and get a list of the total number of compares from each time we ran the sort
 		
 		System.out.println("Best 10 comparisons for ShakerSort for n = " + n + ":");//tell the user what we're about to spit out
 			displayComparisons(deteremineBest10(shakerComparisons));//spit out the number of compares form the best 10 shaker sorts

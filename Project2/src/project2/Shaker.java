@@ -5,7 +5,7 @@ public class Shaker
 {
    public static int trackedSort(Integer array[])
     {
-	   int compares = 0;//number of compares 
+	  int compares = 0;//number of compares 
 	  boolean swapped;// tracks if elements were swapped in this pass
 	  
 	  do {
@@ -22,6 +22,7 @@ public class Shaker
 		if (!swapped) {//if there wasn't any swaps in this pass
 			break;//end the sort. We're done. 
 		}
+		// System.out.println("Shaker compares: " + compares);
 		swapped = false; //reset swapped for our reverse pass
 		for (int i= array.length - 2;i>=0;i--) {//for each element except the first, starting at one from the end and moving backwards
 			if (array[ i ] > array[ i + 1 ]) {//if this element is greater than the one after it
@@ -36,15 +37,17 @@ public class Shaker
 	  
 	//sort should be finished here
      // System.out.println("Finished ShakerSort, Compares: " +compares); // TEST CODE, dumps out total compares from sort 
-
+	 // System.out.println("Shaker compares: " + compares);
 	  return compares;//return our total compares. 
 }
+   
+   
    public static void main(String args[])//test main
    {
        Integer nums[] = {7, 5, 3, 2, 1, 12, 45};
        System.out.println("Original Array:");
        System.out.println(Arrays.toString(nums));
-	     int compares = trackedSort(nums);
+	   int compares = trackedSort(nums);
        System.out.println("Sorted Array");
        System.out.println(Arrays.toString(nums));
        System.out.println("Compares: " +compares);

@@ -6,6 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/charl/Desktop/programming/DiscreteStructures/Project2/lib/algs4.jar"/>
+	<classpathentry kind="lib" path="/home/master/git/DiscreteStructures/Project2/algs4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
