@@ -60,14 +60,35 @@ public class Client {
 		// MERGE
 
 		// SHAKER
+		List<Integer> shakerComparisons = collectShakerComparisons(p);//sort for each of our permutations and get a list of the total number of compares from each time we ran the sort
+		
+		System.out.println("Best 10 comparisons for ShakerSort for n = " + n + ":");//tell the user what we're about to spit out
+			displayComparisons(deteremineBest10(shakerComparisons));//spit out the number of compares form the best 10 shaker sorts
+			System.out.println();
+
+		System.out.println("Worst 10 comparisons for ShakerSort:");// tell the user what we're about to spit out. 
+			displayComparisons(determineWorst10(shakerComparisons));//spit out the number of compares form the worst 10 shaker sorts
+			System.out.println();
+
+		System.out.println("Average comparisons for ShakerSort: \n" + computeAverage(shakerComparisons));
+
+
+
 	}
 
-	private static void displayComparisons(Queue<Integer> q) {
-		for (Integer item : q) {
-			System.out.print(item + " ");
+//Custom Methods for Collecting data from sorts
+	
+	private static List<Integer> collectShakerComparisons(Permutations p){
+		
+		List<Integer> shakerComparisons = new ArrayList<>();//Make an empty list to hold the number of compares from each time we sort 
+
+		for (int i = 0; i < p.getPermutations().length; i++) {//for each permutation in p
+			shakerComparisons.add(Shaker.trackedSort(p.getArray(i)));//sort that permutation, get the number of compares returned by the sort, and add it to the list for later.
 		}
+		return shakerComparisons;//return the list of comparisons from all the sorts.
 	}
-
+	
+	
 	private static List<Integer> collectHeapComparisons(Permutations p) {
 		List<Integer> comparisons = new ArrayList<>();
 		for (int i = 0; i < p.getPermutations().length; i++) {
@@ -88,6 +109,13 @@ public class Client {
 		return comparisons;
 	}
 
+	// Utility Methods for Queues and Lists
+	private static void displayComparisons(Queue<Integer> q) {
+		for (Integer item : q) {
+			System.out.print(item + " ");
+		}
+	}
+	
 	private static Queue<Integer> determineWorst10(List<Integer> comparisons) {
 		MaxPQ<Integer> maxPq = new MaxPQ<Integer>();
 		for (Integer i : comparisons) {
