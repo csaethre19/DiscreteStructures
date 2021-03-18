@@ -37,8 +37,7 @@ public class Client {
 			perms[i] = i;
 		}
 
-		Permutations p = new Permutations(n);
-		p.permutations(perms, perms.length, perms.length);
+		Permutations p = new Permutations(perms);
 		
 		// Using first permutation array and testing heap count on it
 		Integer[] x = p.getArray(20);
@@ -50,6 +49,15 @@ public class Client {
 		Quick.sort(x);
 		System.out.println("Quicksort Comparison x: " + Quick.comps);
 
+		
+		// Testing permutations
+		Permutations p2 = new Permutations(4);
+		System.out.print("Permutations of: " );
+		p2.printArray(p2.getArray(0));
+		System.out.println("Below----------------");
+		p2.printPermutations();
+		
+		
 	}
 
 }
