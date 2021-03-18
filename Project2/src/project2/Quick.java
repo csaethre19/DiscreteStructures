@@ -18,6 +18,10 @@ public class Quick {
 		sort(a, 0, a.length - 1);
 		assert isSorted(a);
 	}
+	
+	public static void clearCount() {
+		comps = 0;
+	}
 
 	// quicksort the subarray from a[lo] to a[hi]
 	private static void sort(Comparable[] a, int lo, int hi) {

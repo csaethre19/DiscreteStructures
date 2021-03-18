@@ -1,7 +1,5 @@
 package project2;
 
-import java.util.Arrays;
-
 public class Permutations {
 	private Integer[][] arrays;
 	private int n;
@@ -15,6 +13,10 @@ public class Permutations {
 	
 	public Integer[] getArray(int index) {
 		return arrays[index];
+	}
+	
+	public Integer[][] getPermutations() {
+		return this.arrays;
 	}
 
 	public void permutations(Integer[] a, int size, int n) {
