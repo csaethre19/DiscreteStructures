@@ -27,7 +27,8 @@ public class Client {
 		Permutations p1 = new Permutations(n);
 		Permutations p2 = new Permutations(p1);
 		Permutations p3 = new Permutations(p1);
-
+		Permutations p4 = new Permutations(p1);
+		
 		// Loop through all arrays, call each sort method on them, and save the
 		// comparison counts into array
 		// Determine best 10 cases, worst 10 cases, and average compares and display
@@ -63,12 +64,22 @@ public class Client {
 
 		// MERGE
 		
-		
-
+		List<Integer> mergeComparisons = collectMergeComparisons(p3);
+		best10 = deteremineBest10(mergeComparisons);
+		worst10 = determineWorst10(mergeComparisons);
+		System.out.println("Best 10 comparisons for MergeSort for n = " + n + ":");
+		displayComparisons(best10);
+		System.out.println();
+		System.out.println("Worst 10 comparisons for MergeSort:");
+		displayComparisons(worst10);
+		System.out.println();
+		System.out.println("Average comparisons for MergeSort: " + computeAverage(mergeComparisons));
+		System.out.println();
+			
 	
 		
 		// SHAKER
-		List<Integer> shakerComparisons = collectShakerComparisons(p3);//sort for each of our permutations and get a list of the total number of compares from each time we ran the sort
+		List<Integer> shakerComparisons = collectShakerComparisons(p4);//sort for each of our permutations and get a list of the total number of compares from each time we ran the sort
 		
 		System.out.println("Best 10 comparisons for ShakerSort for n = " + n + ":");//tell the user what we're about to spit out
 			displayComparisons(deteremineBest10(shakerComparisons));//spit out the number of compares form the best 10 shaker sorts
@@ -94,6 +105,16 @@ public class Client {
 			shakerComparisons.add(Shaker.trackedSort(p.getArray(i)));//sort that permutation, get the number of compares returned by the sort, and add it to the list for later.
 		}
 		return shakerComparisons;//return the list of comparisons from all the sorts.
+	}
+	
+	private static List<Integer> collectMergeComparisons(Permutations p) {
+		List<Integer> comparisons = new ArrayList<>();
+		for (int i = 0; i < p.getPermutations().length; i++) {
+			Merge.sort(p.getArray(i));
+			comparisons.add(Merge.count);
+			Merge.clearCount();
+		}
+		return comparisons;
 	}
 	
 	

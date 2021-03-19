@@ -2,7 +2,7 @@ package project2;
 
 public class Merge {
 	
-	private static int count = 0;
+	public static int count = 0;
 
 	// stably merge a[lo .. mid] with a[mid+1 ..hi] using aux[lo .. hi]
 	private static void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi) {
@@ -143,4 +143,9 @@ public class Merge {
 		merge(a, index, aux, lo, mid, hi);
 	}
 
+	
+	public static void clearCount() {
+		count = 0;
+	}
+	
 }
