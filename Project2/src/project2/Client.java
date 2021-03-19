@@ -25,8 +25,9 @@ public class Client {
 
 	private static void computeSortComparisons(int n) {
 		Permutations p1 = new Permutations(n);
-		Permutations p2 = new Permutations(n);
-		Permutations p3 = new Permutations(n);
+		Permutations p2 = new Permutations(p1);
+		Permutations p3 = new Permutations(p1);
+
 		// Loop through all arrays, call each sort method on them, and save the
 		// comparison counts into array
 		// Determine best 10 cases, worst 10 cases, and average compares and display
@@ -45,6 +46,8 @@ public class Client {
 		System.out.println("Average comparisons for HeapSort: " + computeAverage(heapComparisons));
 		System.out.println();
 
+
+		
 		// QUICK
 		List<Integer> quickComparisons = collectQuickComparisons(p2);
 		best10 = deteremineBest10(quickComparisons);
@@ -59,7 +62,11 @@ public class Client {
 		System.out.println();
 
 		// MERGE
+		
+		
 
+	
+		
 		// SHAKER
 		List<Integer> shakerComparisons = collectShakerComparisons(p3);//sort for each of our permutations and get a list of the total number of compares from each time we ran the sort
 		
