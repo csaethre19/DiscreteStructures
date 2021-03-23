@@ -12,6 +12,8 @@ public class Permutations {
 	private int n;
 	private int index = 0;
 
+	
+	
 	public Permutations(int n) {
 		if (n < 0)
 			throw new IllegalArgumentException();
@@ -22,6 +24,18 @@ public class Permutations {
 		permutations(a, n, n);
 	}
 
+	
+	public Permutations(Permutations another) {
+		this.arrays = new Integer[another.arrays.length][another.arrays[0].length];
+		for(int i = 0; i < this.arrays.length; i++) {
+			for(int j = 0; j < this.arrays[0].length; j++) {
+				this.arrays[i][j] = another.arrays[i][j];
+			}
+		}
+		this.n = another.n;
+		this.index = another.index;
+	}
+	
 	/**
 	 * Loads array with whole numbers increasing in size starting at 0
 	 * 

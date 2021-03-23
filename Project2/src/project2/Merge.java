@@ -143,4 +143,9 @@ public class Merge {
 		merge(a, index, aux, lo, mid, hi);
 	}
 
+	
+	public static void clearCount() {
+		count = 0;
+	}
+	
 }
