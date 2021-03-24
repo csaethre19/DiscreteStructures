@@ -11,8 +11,9 @@ public class Shaker
 	  do {
 		swapped = false;//reset swapped to false for a new pass
 		for (int i =0; i<=  array.length  - 2;i++) {//for every element except the last
+			compares++;//track the compare we just did
+
 			if (array[ i ] > array[ i + 1 ]) {// if this element is greater than the element after it
-				compares++;//track the compare we just did
 				int temp = array[i];// hold our element in a temp variable
 				array[i] = array[i+1];//move the next element into this element's place
 				array[i+1]=temp;//move current element into the next place
@@ -25,8 +26,9 @@ public class Shaker
 		// System.out.println("Shaker compares: " + compares);
 		swapped = false; //reset swapped for our reverse pass
 		for (int i= array.length - 2;i>=0;i--) {//for each element except the first, starting at one from the end and moving backwards
+			compares++;//track the compare
+
 			if (array[ i ] > array[ i + 1 ]) {//if this element is greater than the one after it
-				compares++;//track the compare
 				int temp = array[i];//save our variable
 				array[i] = array[i+1];//move the smaller element to it's new place
 				array[i+1]=temp;//move our bigger element to it's new place

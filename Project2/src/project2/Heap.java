@@ -12,12 +12,14 @@ public class Heap {
 		int n = pq.length;
 
 		// heapify phase
-		for (int k = n / 2; k >= 1; k--)
+		for (int k = n / 2; k >= 1; k--) {
 			sink(pq, k, n);
-
+		}
+		
 		// sortdown phase
 		int k = n;
 		while (k > 1) {
+			count++;
 			exch(pq, 1, k--);
 			sink(pq, 1, k);
 		}
@@ -36,10 +38,14 @@ public class Heap {
 
 	private static void sink(Comparable[] pq, int k, int n) {
 		while (2 * k <= n) {
+			count++;
+
 			int j = 2 * k;
 			count++;
-			if (j < n && less(pq, j, j + 1))
+			if (j < n && less(pq, j, j + 1)) {
 				j++;
+			}
+			count++;
 			if (!less(pq, k, j))
 				break;
 			exch(pq, k, j);
