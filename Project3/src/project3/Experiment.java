@@ -6,20 +6,11 @@ package project3;
  * 
  * DATA:
  * 
- * Number	Experiment			Weight	Rating
- * ------------------------------------------
- * 1		Cloud Patterns		36		5
- * 2		Solar Flares		264		9
- * 3		Solar Power			188		6
- * 4		Binary Stars		203		8
- * 5		Relativity			104		8
- * 6		Seed Viability		7		4
- * 7		Sun Spots			90		2
- * 8		Mice Tumors			65		8
- * 9		Microgravit...		75		5
- * 10		Micrometerorites	170		9
- * 11		Cosmic Rays			80		7
- * 12		Yeast Fermentation	27		4
+ * Number Experiment Weight Rating ------------------------------------------ 1
+ * Cloud Patterns 36 5 2 Solar Flares 264 9 3 Solar Power 188 6 4 Binary Stars
+ * 203 8 5 Relativity 104 8 6 Seed Viability 7 4 7 Sun Spots 90 2 8 Mice Tumors
+ * 65 8 9 Microgravit... 75 5 10 Micrometerorites 170 9 11 Cosmic Rays 80 7 12
+ * Yeast Fermentation 27 4
  * 
  * @author William Norton, Marshall Ringwood, Charlotte Saethre, Cody Salmond, &
  *         Jeremiah Smith
@@ -39,9 +30,9 @@ public class Experiment {
 	public static final int MICROMETERORITES = 10;
 	public static final int COSMIC_RAYS = 11;
 	public static final int YEAST_FERMENTATION = 12;
-	
+
 	public static String getName(int num) {
-		switch(num) {
+		switch (num) {
 		case CLOAD_PATTERNS:
 			return "Cloud Patterns";
 		case SOLAR_FLARES:
@@ -68,13 +59,12 @@ public class Experiment {
 			return "Yeast Fermentation";
 		default:
 			return "Invalid Number in getName";
-		
+
 		}
 	}
-	
-	
+
 	public static int getRating(int num) {
-		switch(num) {
+		switch (num) {
 		case CLOAD_PATTERNS:
 			return 5;
 		case SOLAR_FLARES:
@@ -101,15 +91,12 @@ public class Experiment {
 			return 4;
 		default:
 			return -1;
-		
+
 		}
 	}
-	
-	
-	
-	
+
 	public static int getWeight(int num) {
-		switch(num) {
+		switch (num) {
 		case CLOAD_PATTERNS:
 			return 36;
 		case SOLAR_FLARES:
@@ -136,11 +123,8 @@ public class Experiment {
 			return 27;
 		default:
 			return -1;
-		
+
 		}
 	}
-	
 
-
-	
 }

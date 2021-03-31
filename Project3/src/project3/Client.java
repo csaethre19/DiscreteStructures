@@ -1,25 +1,13 @@
 package project3;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * The question you are to investigate is what combination of payloads gives the
  * highest overall rating
  * 
- * DATA:
- * 
- * Number	Experiment			Weight	Rating
- * ------------------------------------------
- * 1		Cloud Patterns		36		5
- * 2		Solar Flares		264		9
- * 3		Solar Power			188		6
- * 4		Binary Stars		203		8
- * 5		Relativity			104		8
- * 6		Seed Viability		7		4
- * 7		Sun Spots			90		2
- * 8		Mice Tumors			65		8
- * 9		Microgravit...		75		5
- * 10		Micrometerorites	170		9
- * 11		Cosmic Rays			80		7
- * 12		Yeast Fermentation	27		4
  * 
  * @author William Norton, Marshall Ringwood, Charlotte Saethre, Cody Salmond, &
  *         Jeremiah Smith
@@ -29,27 +17,95 @@ package project3;
 public class Client {
 
 	public static void main(String[] args) {
-		// 1. chose items with the highest rating first
-		// 2. select items from the lightest to the most massive
+		// Initialize array
+		List<Exp> experiments = createExperimentsList();
+
+		// 1) If you select experiments based on weight, what is the subset of
+		// experiments that you select, and what is the total rating of the experiments?
+		System.out.println("Question 1:");
+		System.out.println(optimizeRatingsByWeight(experiments));
+
+		// Sorting by ratings
+		sortByRatings(experiments);
+
+		System.out.println();
+
+		// Sorting by weight
+		sortByWeight(experiments);
+
 		// 3. select experiments based on the ratio of rating to mass
+
 		// 4. brute force method using all the permutations
-		
-		int[] set = {1,2,3,4,5,6,7,8,9,10,11,12};
+
+		int[] set = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
 		boolean[][] powerSet = PowerSet.createPowerSet(12);
-		for(int i = 0; i < powerSet.length; i++) {
-			for(int j = 0; j < powerSet[0].length; j++) {
-				if(powerSet[i][j]) {
-					System.out.print(1);
+		for (int i = 0; i < powerSet.length; i++) {
+			for (int j = 0; j < powerSet[0].length; j++) {
+				if (powerSet[i][j]) {
+					// System.out.print(1);
+				} else {
+					// System.out.print(0);
 				}
-				else {
-					System.out.print(0);
-				}
-				
+
 			}
-			System.out.println();
+			// System.out.println();
 		}
-		
-		
+
+	}
+
+	private static void sortByRatings(List<Exp> experiments) {
+		Collections.sort(experiments);
+		displayExperiments(experiments);
+	}
+
+	private static void sortByWeight(List<Exp> experiments) {
+		experiments.sort(Exp.BY_WEIGHT);
+		// Display experiments by weight
+		displayExperiments(experiments);
+	}
+
+	private static void displayExperiments(List<Exp> experiments) {
+		for (Exp x : experiments) {
+			System.out.println(x);
+		}
+	}
+
+	private static List<Exp> createExperimentsList() {
+		List<Exp> experiments = new ArrayList<Exp>();
+
+		experiments.add(new Exp(1, "Cloud Patterns", 5, 36));
+		experiments.add(new Exp(2, "Solar Flares", 9, 264));
+		experiments.add(new Exp(3, "Solar Power", 6, 188));
+		experiments.add(new Exp(4, "Binary Stars", 8, 203));
+		experiments.add(new Exp(5, "Relativity", 8, 104));
+		experiments.add(new Exp(6, "Seed Viability", 4, 7));
+		experiments.add(new Exp(7, "Sun Spots", 2, 90));
+		experiments.add(new Exp(8, "Mice Tumors", 8, 65));
+		experiments.add(new Exp(9, "Microgravity", 5, 36));
+		experiments.add(new Exp(10, "Micrometerorites", 9, 170));
+		experiments.add(new Exp(11, "Cosmic Rays", 7, 80));
+		experiments.add(new Exp(12, "Yeast Fermentation", 4, 27));
+		return experiments;
+	}
+
+	/**
+	 * 
+	 * @param sorted
+	 * @return
+	 */
+	public static List<Exp> optimizeRatingsByWeight(List<Exp> sorted) {
+		List<Exp> experiments = new ArrayList<>();
+		int weightLimit = 700;
+		int currentWeight = 0;
+
+		for (Exp x : sorted) {
+			if (currentWeight + x.getWeight() <= weightLimit) {
+				experiments.add(x);
+				currentWeight += x.getWeight();
+			}
+		}
+		System.out.println("Weight: " + currentWeight);
+		return experiments;
 	}
 
 }
