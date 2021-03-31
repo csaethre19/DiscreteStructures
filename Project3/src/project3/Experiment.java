@@ -25,9 +25,8 @@ package project3;
  *         Jeremiah Smith
  *
  */
-
 public class Experiment {
-	public static final int CLOAD_PATTERNS = 1;
+	public static final int CLOUD_PATTERNS = 1;
 	public static final int SOLAR_FLARES = 2;
 	public static final int SOLAR_POWER = 3;
 	public static final int BINARY_STARS = 4;
@@ -40,9 +39,18 @@ public class Experiment {
 	public static final int COSMIC_RAYS = 11;
 	public static final int YEAST_FERMENTATION = 12;
 	
+	public static final int WEIGHT_LIMIT = 700;
+	
+	
+	/**
+	 * Enter experiment number for its name
+	 * 
+	 * @param num
+	 * @return Experiment Name
+	 */
 	public static String getName(int num) {
 		switch(num) {
-		case CLOAD_PATTERNS:
+		case CLOUD_PATTERNS:
 			return "Cloud Patterns";
 		case SOLAR_FLARES:
 			return "Solar Flares";
@@ -72,10 +80,15 @@ public class Experiment {
 		}
 	}
 	
-	
+	/**
+	 * Enter experiment number for its rating
+	 * 
+	 * @param num
+	 * @return rating
+	 */
 	public static int getRating(int num) {
 		switch(num) {
-		case CLOAD_PATTERNS:
+		case CLOUD_PATTERNS:
 			return 5;
 		case SOLAR_FLARES:
 			return 9;
@@ -107,10 +120,15 @@ public class Experiment {
 	
 	
 	
-	
+	/**
+	 * Enter experiment number for its weight
+	 * 
+	 * @param num
+	 * @return weight
+	 */
 	public static int getWeight(int num) {
 		switch(num) {
-		case CLOAD_PATTERNS:
+		case CLOUD_PATTERNS:
 			return 36;
 		case SOLAR_FLARES:
 			return 264;
@@ -140,7 +158,88 @@ public class Experiment {
 		}
 	}
 	
+	/**
+	 * Checks every possible set of experiments and
+	 * prints out the maximum rating and the experiments 
+	 * to send up to get that rating
+	 * 
+	 */
+	public static void bruteForce() {
+		System.out.println("Brute force method to find maximum rating.");
+		
+		int[] set = {CLOUD_PATTERNS,SOLAR_FLARES,SOLAR_POWER,BINARY_STARS, RELATIVITY,
+				SEED_VIABILITY,SUN_SPOTS,MICE_TUMORS,MICROGRAVITY,MICROMETERORITES,
+				COSMIC_RAYS,YEAST_FERMENTATION};
+		boolean[][] powerSet = PowerSet.createPowerSet(set.length);
+		
+		int[] weights = new int[powerSet.length];
+		int[] ratings = new int[powerSet.length];
+		
+		for(int i = 0; i < powerSet.length; i++) {
+			int weight = 0;
+			int rating = 0;
+			for(int j = 0; j < set.length; j++) {
+				if(powerSet[i][j]) {
+					weight += getWeight(set[j]);
+					if(weight > WEIGHT_LIMIT) {
+						rating = 0;
+						break;
+					}
+					else {
+						rating += getRating(set[j]);
+					}
+				}
+				
+			}
+			weights[i] = weight;
+			ratings[i] = rating;
+		}
+		
+		
+		int maxI = maxIndex(ratings);
+		
+		int maxRating = ratings[maxI];
+		int totalWeight = weights[maxI];
+		
+		
+		System.out.println("Max Rating: " + maxRating);
+		System.out.println("Total Weight: " + totalWeight);
+		System.out.println("Experiment set below--------");
+		for(int j = 0; j < set.length; j++) {
+			if(powerSet[maxI][j]) {
+				System.out.println(set[j] + " " + getName(set[j]) + " Weight: " +
+				getWeight(set[j]) + " Rating: " + getRating(set[j]));
+			}
+		
+			
+		}
+		
+		
+		
+		
+	}
 
+	/**
+	 * Searches array for maximum element and returns its index
+	 * 
+	 * @param a
+	 * @return max index
+	 */
+	public static int maxIndex(int[] a) {
+		if(a.length == 0) {
+			return -1;
+		}
+		int max = a[0];
+		int index = 0;
+		for(int i = 1; i < a.length; i++) {
+			if(a[i] > max) {
+				max = a[i];
+				index = i;
+			}
+		}
+		return index;
+	}
 
+	
 	
 }
