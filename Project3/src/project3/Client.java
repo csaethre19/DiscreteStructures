@@ -33,6 +33,7 @@ public class Client {
 		// Sorting by weight
 		sortByWeight(experiments);
 
+		System.out.println();
 		// 3. select experiments based on the ratio of rating to mass
 
 		// 4. brute force method using all the permutations
