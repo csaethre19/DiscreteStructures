@@ -34,7 +34,12 @@ public class Client {
 		sortByWeight(experiments);
 
 		System.out.println();
+		
 		// 3. select experiments based on the ratio of rating to mass
+		System.out.println("HERE");
+		sortByRatio(experiments);
+		System.out.println(optimizeByRatio(experiments));
+		System.out.println();
 
 		// 4. brute force method using all the subsets
 		
@@ -52,10 +57,16 @@ public class Client {
 		// Display experiments by weight
 		displayExperiments(experiments);
 	}
+	
+	private static void sortByRatio(List<Exp> experiments) {
+		experiments.sort(Exp.BY_RATIO);
+		displayExperiments(experiments);
+	}
 
 	private static void displayExperiments(List<Exp> experiments) {
 		for (Exp x : experiments) {
-			System.out.println(x);
+			System.out.printf("Experiment: %-15s \t| Rating: %3d |\t Weight: %5d | Ratio: %.3f\n",
+					x.getName(), x.getRating(), x.getWeight(), x.getRatio());
 		}
 	}
 
@@ -96,6 +107,22 @@ public class Client {
 		System.out.println("Weight: " + currentWeight);
 		return experiments;
 		
+	}
+	
+	public static List<Exp> optimizeByRatio(List<Exp> sorted) {
+		List<Exp> experiments = new ArrayList<>();
+		int weightLimit = 700;
+		int currentWeight = 0;
+		
+		for (Exp x : sorted) {
+			if (currentWeight + x.getWeight() <= weightLimit) {
+				experiments.add(x);
+				currentWeight += x.getWeight();
+			}
+		}
+		
+		System.out.println("Weight: " + currentWeight);
+		return experiments;
 	}
 
 }
