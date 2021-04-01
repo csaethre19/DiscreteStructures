@@ -36,22 +36,7 @@ public class Client {
 		System.out.println();
 		// 3. select experiments based on the ratio of rating to mass
 
-		// 4. brute force method using all the permutations
-
-//		int[] set = {1,2,3,4,5,6,7,8,9,10,11,12};
-//		boolean[][] powerSet = PowerSet.createPowerSet(12);
-//		for(int i = 0; i < powerSet.length; i++) {
-//			for(int j = 0; j < powerSet[0].length; j++) {
-//				if(powerSet[i][j]) {
-//					System.out.print(1);
-//				}
-//				else {
-//					System.out.print(0);
-//				}
-//				
-//			}
-//			System.out.println();
-//		}
+		// 4. brute force method using all the subsets
 		
 		Experiment.bruteForce();
 
