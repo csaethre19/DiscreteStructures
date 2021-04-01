@@ -16,6 +16,10 @@ public class Exp implements Comparable<Exp> {
 		this.number = number;
 	}
 
+	
+	
+	
+	
 	/**
 	 * @return the name
 	 */

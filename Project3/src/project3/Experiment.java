@@ -38,6 +38,7 @@ public class Experiment {
 	public static final Exp MICROMETERORITES = new Exp(10, "Micrometeorites", 9,170);
 	public static final Exp COSMIC_RAYS = new Exp(11, "Cosmic Rays", 7, 80);
 	public static final Exp YEAST_FERMENTATION = new Exp(12, "Yeast Fermentation", 4, 27);
+	public static final Exp REMOVE_THIS = new Exp(12, "REMOVE_THIS", 100, 27);
 	public static final int WEIGHT_LIMIT = 700;
 	
 //	public static final int CLOUD_PATTERNS = 1;
@@ -182,6 +183,29 @@ public class Experiment {
 		Exp[] set = {CLOUD_PATTERNS,SOLAR_FLARES,SOLAR_POWER,BINARY_STARS, RELATIVITY,
 				SEED_VIABILITY,SUN_SPOTS,MICE_TUMORS,MICROGRAVITY,MICROMETERORITES,
 				COSMIC_RAYS,YEAST_FERMENTATION};
+		Exp[] bestRatingSubSet = bestRatingSubSet(set);
+		
+		
+		
+		
+		int maxRating = totalRating(bestRatingSubSet);
+		int totalWeight = totalWeight(bestRatingSubSet);
+		
+		
+		System.out.println("Max Rating: " + maxRating);
+		System.out.println("Total Weight: " + totalWeight);
+		System.out.println("Experiment set below--------");
+		for(int j = 0; j < bestRatingSubSet.length; j++) {
+			
+			System.out.println(bestRatingSubSet[j].getNumber() + " " + bestRatingSubSet[j].getName() + " Weight: " +
+					bestRatingSubSet[j].getWeight() + " Rating: " + bestRatingSubSet[j].getRating());
+			
+		}
+
+	}
+	
+	
+	public static Exp[] bestRatingSubSet(Exp[] set) {
 		boolean[][] powerSet = PowerSet.createPowerSet(set.length);
 		
 		int[] weights = new int[powerSet.length];
@@ -205,27 +229,48 @@ public class Experiment {
 			}
 			weights[i] = weight;
 			ratings[i] = rating;
-		}
-		
-		
-		int maxI = maxIndex(ratings);
-		
-		int maxRating = ratings[maxI];
-		int totalWeight = weights[maxI];
-		
-		
-		System.out.println("Max Rating: " + maxRating);
-		System.out.println("Total Weight: " + totalWeight);
-		System.out.println("Experiment set below--------");
-		for(int j = 0; j < set.length; j++) {
-			if(powerSet[maxI][j]) {
-				System.out.println(set[j].getNumber() + " " + set[j].getName() + " Weight: " +
-						set[j].getWeight() + " Rating: " + set[j].getRating());
-			}
-		
+			
 			
 		}
+		int maxI = maxIndex(ratings);
+		int sum = 0;
+		
+		for(int j = 0; j < set.length; j++) {
+			if(powerSet[maxI][j]) {
+				sum += 1;
+			}
+		}
+		
+		Exp[] newSet = new Exp[sum];
+		int elementCount = 0;
+		for(int j = 0; j < set.length; j++) {
+			if(powerSet[maxI][j]) {
+				newSet[elementCount] = new Exp(set[j].getNumber(), set[j].getName(), set[j].getRating(),
+						set[j].getWeight());
+				elementCount += 1;
+			}
+		}
+		
+		
+		
 
+		return newSet;
+	}
+	
+	public static int totalWeight(Exp[] e) {
+		int sum = 0;
+		for(int i = 0; i < e.length; i++) {
+			sum += e[i].getWeight();
+		}
+		return sum;
+	}
+	
+	public static int totalRating(Exp[] e) {
+		int sum = 0;
+		for(int i = 0; i < e.length; i++) {
+			sum += e[i].getRating();
+		}
+		return sum;
 	}
 
 	/**
