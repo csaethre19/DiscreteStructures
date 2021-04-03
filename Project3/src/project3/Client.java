@@ -5,9 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The question you are to investigate is what combination of payloads gives the
- * highest overall rating
- * 
+ * Determines combination of pay-loads that gives the highest overall rating
+ * using different methods.
  * 
  * @author William Norton, Marshall Ringwood, Charlotte Saethre, Cody Salmond, &
  *         Jeremiah Smith
@@ -20,29 +19,34 @@ public class Client {
 		// Initialize array
 		List<Exp> experiments = createExperimentsList();
 
-		// 1) If you select experiments based on weight, what is the subset of
-		// experiments that you select, and what is the total rating of the experiments?
-		System.out.println("Question 1:");
-		System.out.println(optimizeRatingsByWeight(experiments));
-
-		// Sorting by ratings
-		sortByRatings(experiments);
-
-		System.out.println();
-
+		// Question 1
+		System.out.println(
+				"1) If you select experiments based on weight, what is the subset of experiments that you select, "
+						+ "and what is the total rating of the experiments?\n");
 		// Sorting by weight
 		sortByWeight(experiments);
+		optimizeRatings(experiments);
 
 		System.out.println();
-		
-		// 3. select experiments based on the ratio of rating to mass
-		System.out.println("HERE");
+
+		// Question 2
+		System.out.println("2) If you select experiments based on rating, "
+				+ "what is the subset of experiments that you select and what is the total rating?\n");
+		// Sorting by ratings
+		sortByRatings(experiments);
+		optimizeRatings(experiments);
+
+		System.out.println();
+
+		// Question 3
+		System.out.println("3. Select experiments based on the ratio of rating to mass\n");
+		// Sorting by Ratio
 		sortByRatio(experiments);
-		System.out.println(optimizeByRatio(experiments));
+		optimizeRatings(experiments);
+
 		System.out.println();
 
 		// 4. brute force method using all the subsets
-		
 		Experiment.bruteForce();
 
 	}
@@ -54,10 +58,9 @@ public class Client {
 
 	private static void sortByWeight(List<Exp> experiments) {
 		experiments.sort(Exp.BY_WEIGHT);
-		// Display experiments by weight
 		displayExperiments(experiments);
 	}
-	
+
 	private static void sortByRatio(List<Exp> experiments) {
 		experiments.sort(Exp.BY_RATIO);
 		displayExperiments(experiments);
@@ -65,11 +68,12 @@ public class Client {
 
 	private static void displayExperiments(List<Exp> experiments) {
 		for (Exp x : experiments) {
-			System.out.printf("Experiment: %-15s \t| Rating: %3d |\t Weight: %5d | Ratio: %.3f\n",
-					x.getName(), x.getRating(), x.getWeight(), x.getRatio());
+			System.out.printf("Experiment: %-15s \t| Rating: %3d |\t Weight: %5d | Ratio: %.3f\n", x.getName(),
+					x.getRating(), x.getWeight(), x.getRatio());
 		}
 	}
 
+	// Creates the list of experiments based on provided data
 	private static List<Exp> createExperimentsList() {
 		List<Exp> experiments = new ArrayList<Exp>();
 
@@ -85,44 +89,33 @@ public class Client {
 		experiments.add(new Exp(10, "Micrometerorites", 9, 170));
 		experiments.add(new Exp(11, "Cosmic Rays", 7, 80));
 		experiments.add(new Exp(12, "Yeast Fermentation", 4, 27));
+
 		return experiments;
 	}
 
 	/**
+	 * Determines optimal combination of experiments not exceeding 700 kg based on
+	 * specified list of experiments sorted accordingly.
 	 * 
-	 * @param sorted
-	 * @return
+	 * @param sorted list of experiments
+	 * @return list of experiments based by weight
 	 */
-	public static List<Exp> optimizeRatingsByWeight(List<Exp> sorted) {
+	public static List<Exp> optimizeRatings(List<Exp> sorted) {
 		List<Exp> experiments = new ArrayList<>();
 		int weightLimit = 700;
 		int currentWeight = 0;
+		int totalRating = 0;
 
 		for (Exp x : sorted) {
 			if (currentWeight + x.getWeight() <= weightLimit) {
 				experiments.add(x);
 				currentWeight += x.getWeight();
+				totalRating += x.getRating();
 			}
 		}
-		System.out.println("Weight: " + currentWeight);
+		System.out.println("Total Rating: " + totalRating);
 		return experiments;
-		
-	}
-	
-	public static List<Exp> optimizeByRatio(List<Exp> sorted) {
-		List<Exp> experiments = new ArrayList<>();
-		int weightLimit = 700;
-		int currentWeight = 0;
-		
-		for (Exp x : sorted) {
-			if (currentWeight + x.getWeight() <= weightLimit) {
-				experiments.add(x);
-				currentWeight += x.getWeight();
-			}
-		}
-		
-		System.out.println("Weight: " + currentWeight);
-		return experiments;
+
 	}
 
 }

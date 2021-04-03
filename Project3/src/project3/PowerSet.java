@@ -1,7 +1,12 @@
 package project3;
 
 import java.lang.Math;
-
+/**
+ * Creates a power set used to implement a brute force method.
+ * 
+ * @author William Norton
+ *
+ */
 public class PowerSet {
 
 	static boolean[][] createPowerSet(int cardinality) {
