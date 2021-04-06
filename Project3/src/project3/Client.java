@@ -1,5 +1,9 @@
 package project3;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -86,6 +90,29 @@ public class Client {
 		//print out our total Weight
 		System.out.println("Total Weight: " + bruteForcedSet.getTotalWeight());
 		System.out.println();
+		
+		//Question 5
+		
+		//Dumps out a text file with the answer to question 5
+		 BufferedReader br;
+		try {
+			br = new BufferedReader(new FileReader("src/question5.txt"));
+			String line;
+
+			 while ((line = br.readLine()) != null) {
+				   System.out.println(line);
+				 }
+			
+			
+		} catch (FileNotFoundException e) {
+			System.out.println("Can't find question5.txt");
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("Problem reading question5.txt");
+
+			e.printStackTrace();
+		}
+		
 
 System.out.println();	}
 

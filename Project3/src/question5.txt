@@ -1,0 +1,18 @@
+Question 5:
+Describe, in your own words, a dynamic programming algorithm that gives a good solution to the knapsack problem.
+You may use code from the Internet, but present a dynamic programming solution to the above problem.  
+
+The brute force version of this problem can use recursion to exhaustively check every possibility when deciding whether to 
+place an item in the spaceship.
+
+The algorithm loops through the list, keeping in memory a "trail" of values for each decision where it keeps or discards each element,
+then compares difference in values of each "trail" to report an optimal solution from that decision. 
+
+ This sounds nice but if you were to visually map it as a binary tree with n levels things get quickly out of hand. 
+
+The accepted dynamic programming approach is surprisingly simple. You employ the same recursive algorithm above but you cache
+the value of each decision in an array with 2 dimensions representing the index of the element, and the remaining capacity of that element. 
+Then, while the recursive algorithm is running, it can skip the whole decision process if it's done the computation before by checking if the 
+value at the indexes for that element/capacity pair is null, and returning it if it exists or doing the whole process once if the pair hasn't 
+been evaluated yet. 
+ 
