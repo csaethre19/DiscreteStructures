@@ -2,6 +2,7 @@ package project3;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -16,65 +17,86 @@ import java.util.List;
 public class Client {
 
 	public static void main(String[] args) {
-		// Initialize array
-		List<Exp> experiments = createExperimentsList();
+		// Initialize the set of all our experiments
+		ExperimentSet experimentSet = new ExperimentSet(createInitialExperimentsList());
 
-		// Question 1
+		// Question 1 Prompt
 		System.out.println(
 				"1) If you select experiments based on weight, what is the subset of experiments that you select, "
 						+ "and what is the total rating of the experiments?\n");
-		// Sorting by weight
-		sortByWeight(experiments);
-		optimizeRatings(experiments);
-
+		//configurable weight budget
+		int weightBudget = 700;
+		// sort set by weight
+		experimentSet.SortBy(Exp.BY_WEIGHT);
+		
+		//build a new experiment set using the buildListByWeight method
+		ExperimentSet weightSet = new ExperimentSet(buildListByWeight(experimentSet.experiments, weightBudget));
+		
+		//Print out our elements of the new set
+		System.out.println("Elements of set: \n" + weightSet.toString());
+		//print out our total Rating
+		System.out.println("Total Rating: " + weightSet.getTotalRating());
+		//print out our total Weight
+		System.out.println("Total Weight: " + weightSet.getTotalWeight());
 		System.out.println();
-
+		
 		// Question 2
+		
+	
 		System.out.println("2) If you select experiments based on rating, "
 				+ "what is the subset of experiments that you select and what is the total rating?\n");
 		// Sorting by ratings
-		sortByRatings(experiments);
-		optimizeRatings(experiments);
+		experimentSet.SortBy(null);		
+		ExperimentSet ratingsSet = new ExperimentSet(buildListByWeight(experimentSet.experiments, weightBudget));
+		
+		//Print out our elements of the new set
+				System.out.println("Elements of set: \n" + ratingsSet.toString());
+				//print out our total Rating
+				System.out.println("Total Rating: " + ratingsSet.getTotalRating());
+				//print out our total Weight
+				System.out.println("Total Weight: " + ratingsSet.getTotalWeight());
+				System.out.println();
 
 		System.out.println();
 
 		// Question 3
 		System.out.println("3. Select experiments based on the ratio of rating to mass\n");
-		// Sorting by Ratio
-		sortByRatio(experiments);
-		optimizeRatings(experiments);
+		// Sorting by ratings
+				experimentSet.SortBy(Exp.BY_RATIO);		
+				ExperimentSet ratioSet = new ExperimentSet(buildListByWeight(experimentSet.experiments, weightBudget));
+				
+				//Print out our elements of the new set
+						System.out.println("Elements of set: \n" + ratioSet.toString());
+						//print out our total Rating
+						System.out.println("Total Rating: " + ratioSet.getTotalRating());
+						//print out our total Weight
+						System.out.println("Total Weight: " + ratioSet.getTotalWeight());
+						System.out.println();
 
+				System.out.println();
+
+		// Question 4
+		System.out.println("4. Brute force method to find maximum rating of 4096 possible subsets.");
+		List<Exp> bruteForcedExperiments = Experiment.bruteForce();
+		ExperimentSet bruteForcedSet = new ExperimentSet(bruteForcedExperiments);
+		
+		System.out.println("Elements of set: \n" + bruteForcedSet.toString());
+		//print out our total Rating
+		System.out.println("Total Rating: " + bruteForcedSet.getTotalRating());
+		//print out our total Weight
+		System.out.println("Total Weight: " + bruteForcedSet.getTotalWeight());
 		System.out.println();
 
-		// 4. brute force method using all the subsets
-		Experiment.bruteForce();
+System.out.println();	}
 
-	}
 
-	private static void sortByRatings(List<Exp> experiments) {
-		Collections.sort(experiments);
-		displayExperiments(experiments);
-	}
 
-	private static void sortByWeight(List<Exp> experiments) {
-		experiments.sort(Exp.BY_WEIGHT);
-		displayExperiments(experiments);
-	}
-
-	private static void sortByRatio(List<Exp> experiments) {
-		experiments.sort(Exp.BY_RATIO);
-		displayExperiments(experiments);
-	}
-
-	private static void displayExperiments(List<Exp> experiments) {
-		for (Exp x : experiments) {
-			System.out.printf("Experiment: %-15s \t| Rating: %3d |\t Weight: %5d | Ratio: %.3f\n", x.getName(),
-					x.getRating(), x.getWeight(), x.getRatio());
-		}
-	}
+	
+	
+	
 
 	// Creates the list of experiments based on provided data
-	private static List<Exp> createExperimentsList() {
+	private static List<Exp> createInitialExperimentsList() {
 		List<Exp> experiments = new ArrayList<Exp>();
 
 		experiments.add(new Exp(1, "Cloud Patterns", 5, 36));
@@ -100,20 +122,16 @@ public class Client {
 	 * @param sorted list of experiments
 	 * @return list of experiments based by weight
 	 */
-	public static List<Exp> optimizeRatings(List<Exp> sorted) {
+	public static List<Exp> buildListByWeight(List<Exp> sorted, int weightLimit) {
 		List<Exp> experiments = new ArrayList<>();
-		int weightLimit = 700;
 		int currentWeight = 0;
-		int totalRating = 0;
 
 		for (Exp x : sorted) {
 			if (currentWeight + x.getWeight() <= weightLimit) {
 				experiments.add(x);
 				currentWeight += x.getWeight();
-				totalRating += x.getRating();
 			}
 		}
-		System.out.println("Total Rating: " + totalRating);
 		return experiments;
 
 	}

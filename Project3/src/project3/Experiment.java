@@ -1,5 +1,9 @@
 package project3;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+
 /**
  * 
  * 
@@ -158,16 +162,18 @@ public class Experiment {
 	 * and the experiments to send up to get that rating
 	 * 
 	 */
-	public static void bruteForce() {
-		System.out.println("Brute force method to find maximum rating.");
+	public static List<Exp> bruteForce() {
 
 		Exp[] set = { CLOUD_PATTERNS, SOLAR_FLARES, SOLAR_POWER, BINARY_STARS, RELATIVITY, SEED_VIABILITY, SUN_SPOTS,
 				MICE_TUMORS, MICROGRAVITY, MICROMETERORITES, COSMIC_RAYS, YEAST_FERMENTATION };
 		Exp[] bestRatingSubSet = bestRatingSubSet(set);
-
 		int maxRating = totalRating(bestRatingSubSet);
-		int totalWeight = totalWeight(bestRatingSubSet);
+		int totalWeight = totalWeight(bestRatingSubSet);	
+		
+		List<Exp> bruteForceList = Arrays.asList(bestRatingSubSet);
 
+
+		/*
 		System.out.println("Max Rating: " + maxRating);
 		System.out.println("Total Weight: " + totalWeight);
 		System.out.println("Experiment set below--------");
@@ -177,7 +183,9 @@ public class Experiment {
 					+ bestRatingSubSet[j].getWeight() + " Rating: " + bestRatingSubSet[j].getRating());
 
 		}
-
+		 */
+		
+		return bruteForceList;
 	}
 
 	public static Exp[] bestRatingSubSet(Exp[] set) {
@@ -242,6 +250,8 @@ public class Experiment {
 		}
 		return sum;
 	}
+	
+	
 
 	/**
 	 * Searches array for maximum element and returns its index
